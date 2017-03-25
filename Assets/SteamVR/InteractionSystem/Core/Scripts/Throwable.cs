@@ -26,7 +26,10 @@ namespace Valve.VR.InteractionSystem
 		[Tooltip( "How fast must this object be moving to attach due to a trigger hold instead of a trigger press?" )]
 		public float catchSpeedThreshold = 0.0f;
 
-		[Tooltip( "When detaching the object, should it return to its original parent?" )]
+        [Tooltip("Velocity Multipler")]
+        public float velocityMultipler = 1f;
+
+        [Tooltip( "When detaching the object, should it return to its original parent?" )]
 		public bool restoreOriginalParent = false;
 
 		public bool attachEaseIn = false;
@@ -184,7 +187,7 @@ namespace Valve.VR.InteractionSystem
 			}
 
 			Vector3 r = transform.TransformPoint( rb.centerOfMass ) - position;
-			rb.velocity = velocity + Vector3.Cross( angularVelocity, r );
+			rb.velocity = velocityMultipler * velocity + Vector3.Cross( angularVelocity, r );
 			rb.angularVelocity = angularVelocity;
 
 			// Make the object travel at the release velocity for the amount

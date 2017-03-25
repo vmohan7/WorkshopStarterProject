@@ -17,7 +17,7 @@ namespace Valve.VR.InteractionSystem
 		[Tooltip( "How many frames to average over for computing angular velocity" )]
 		public int angularVelocityAverageFrames = 11;
 
-		public bool estimateOnAwake = false;
+        public bool estimateOnAwake = false;
 
 		private Coroutine routine;
 		private int sampleCount;
